@@ -1,18 +1,16 @@
 package com.af.abner_af_im.ui.main
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.material3.Button
-import androidx.compose.material3.ModalNavigationDrawer
-import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.lifecycleScope
 import com.af.abner_af_im.base.BaseActivity
-import com.af.abner_af_im.ui.login.ComposeChat
+import com.af.abner_af_im.state.ServerState
 import com.af.abner_af_im.ui.login.LoginActivity
+import kotlinx.coroutines.launch
 
 
 class MainActivity : BaseActivity() {
@@ -23,6 +21,24 @@ class MainActivity : BaseActivity() {
         setContent {
             MainPage()
         }
+
+        initEvent()
+    }
+
+    private fun initEvent() {
+
+        lifecycleScope.launch {
+            mainViewModel.serverConnectState.collect{
+                when(it) {
+                    ServerState.Logout -> {
+                        startActivity<LoginActivity>()
+                        finish()
+                    }
+
+                    else -> {}
+                }
+            }
+        }
     }
 
     @Preview
@@ -31,11 +47,7 @@ class MainActivity : BaseActivity() {
         Button(
             content = { Text("退出登录") },
             onClick = {
-                val logout = mainViewModel.logout()
-                if (logout) {
-                    startActivity<LoginActivity>()
-                    finish()
-                }
+                mainViewModel.logout()
             })
     }
 }

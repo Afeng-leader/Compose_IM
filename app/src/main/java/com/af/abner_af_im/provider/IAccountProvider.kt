@@ -5,11 +5,7 @@ import com.af.abner_af_im.state.ActionResult
 import com.af.abner_af_im.state.ServerState
 import kotlinx.coroutines.flow.SharedFlow
 
-/**
- * @Author: leavesCZY
- * @Desc:
- * @Github：https://github.com/leavesCZY
- */
+
 interface IAccountProvider {
 
 

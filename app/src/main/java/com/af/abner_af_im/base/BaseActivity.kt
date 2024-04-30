@@ -19,11 +19,6 @@ import com.af.abner_af_im.ui.theme.Abner_Af_IMTheme
 import com.af.abner_af_im.provider.AppThemeProvider
 
 
-/**
- * @Author: leavesCZY
- * @Desc:
- * @Github：https://github.com/leavesCZY
- */
 open class BaseActivity : AppCompatActivity() {
 
     protected inline fun <reified T : ViewModel> viewModelsInstance(crossinline create: () -> T): Lazy<T> {

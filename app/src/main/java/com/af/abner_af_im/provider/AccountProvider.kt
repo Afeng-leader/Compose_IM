@@ -6,6 +6,7 @@ import com.af.abner_af_im.state.ActionResult
 import com.af.abner_af_im.state.ServerState
 import com.af.abner_af_im.utils.AppConstant
 import com.af.abner_af_im.utils.GenerateUserSig
+import com.af.abner_af_im.utils.LogUtils
 import com.tencent.imsdk.v2.V2TIMCallback
 import com.tencent.imsdk.v2.V2TIMManager
 import com.tencent.imsdk.v2.V2TIMSDKConfig
@@ -17,12 +18,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
-/**
- * @Author: leavesCZY
- * @Desc:
- * @Github：https://github.com/leavesCZY
- */
+
 class AccountProvider : IAccountProvider {
+    private val  TAG  = "AccountProvider"
 
     override val serverConnectState = MutableSharedFlow<ServerState>()
 
@@ -58,6 +56,7 @@ class AccountProvider : IAccountProvider {
     }
 
     private fun updateServerState(serverState: ServerState) {
+        LogUtils.d(TAG, "updateServerState: $serverState")
         ChatCoroutineScope.launch {
             serverConnectState.emit(value = serverState)
         }

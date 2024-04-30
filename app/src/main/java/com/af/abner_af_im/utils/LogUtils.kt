@@ -3,31 +3,31 @@ package com.af.abner_af_im.utils
 import android.util.Log
 
 object LogUtils {
-    private val isDebug: Boolean = true
-    private val TAG: String = "日常打log"
+    private const val isDebug: Boolean = true
+    private const val TAG = "Composable_IM"
 
-    fun i(msg: String) {
+    fun i(tag: String ,msg: String) {
         if (isDebug) {
-            Log.i(TAG, msg)
+            Log.i(TAG,"$tag:  $msg")
         }
     }
 
-    fun d(msg: String) {
+    fun d(tag: String ,msg: String) {
         if (isDebug) {
-            Log.d(TAG, msg)
+            Log.d(TAG,"$tag:  $msg")
         }
     }
 
 
-    fun e(msg: String) {
+    fun e(tag: String ,msg: String) {
         if (isDebug) {
-            Log.e(TAG, msg)
+            Log.e(TAG,"$tag:  $msg")
         }
     }
 
-    fun v(msg: String) {
+    fun v(tag: String ,msg: String) {
         if (isDebug) {
-            Log.v(TAG, msg)
+            Log.v(TAG,"$tag:  $msg")
         }
     }
 }
